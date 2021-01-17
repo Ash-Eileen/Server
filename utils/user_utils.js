@@ -10,6 +10,7 @@ const addChild = async (req) => {
   let child = {
     name: req.body.name,
     age: req.body.age,
+    childUid: req.body.childUid
   };
 
   user.children.push(child);
