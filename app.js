@@ -17,11 +17,14 @@ const { mongooseConnect } = require("./config/mongoose");
 const app = express();
 const port = process.env.PORT || 3009;
 
-const whiteList = ["http://localhost:3000"];
+const whiteList = [
+  "http://localhost:3000",
+  "https://north-pole-post.netlify.app/",
+];
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
+    if (whiteList.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
