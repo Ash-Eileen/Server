@@ -18,7 +18,7 @@ const { mongooseConnect } = require("./config/mongoose");
 const app = express();
 const port = process.env.PORT || 3009;
 
-const allowList = [
+const whitelist = [
   "http://localhost:3000",
   "https://north-pole-post.netlify.app/",
 ];
@@ -28,8 +28,8 @@ app.use(cookieParser());
 const corsOptions = {
   credentials: true,
   origin: function (origin, callback) {
-    const allowListIndex = allowList.findIndex((url) => url.includes(origin));
-    callback(null, allowListIndex > -1);
+    const whitelistIndex = whitelist.findIndex((url) => url.includes(origin));
+    callback(null, whitelistIndex > -1);
   },
 };
 
