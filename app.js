@@ -42,8 +42,10 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
-const databaseConnection =
-  process.env.MONGODB_URI || "mongodb://localhost/santa_site";
+// const databaseConnection =
+// process.env.MONGODB_URI || "mongodb://localhost/santa_site";
+
+const databaseConnection = process.env.NODE_ENV;
 
 mongooseConnect(databaseConnection);
 
