@@ -6,6 +6,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
+const cookieParser = require("cookie-parser");
 
 const giftListRouter = require("./routes/giftList_routes");
 const userRouter = require("./routes/user_routes");
@@ -17,22 +18,23 @@ const { mongooseConnect } = require("./config/mongoose");
 const app = express();
 const port = process.env.PORT || 3009;
 
-const whiteList = [
+const allowList = [
   "http://localhost:3000",
   "https://north-pole-post.netlify.app/",
 ];
+app.set("trust proxy", 1);
+app.use(cookieParser());
 
 const corsOptions = {
+  credentials: true,
   origin: function (origin, callback) {
-    if (whiteList.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
+    const allowListIndex = allowList.findIndex((url) => url.includes(origin));
+    callback(null, allowListIndex > -1);
   },
 };
 
-app.use(cors({ origin: true, credentials: true }));
+// app.use(cors({ origin: true, credentials: true }));
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 
@@ -73,7 +75,7 @@ app.use("/dashboard", userRouter);
 app.use("/lettertosanta", childGiftListRouter);
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Backend for North Pole Post");
 });
 
 app.listen(port, () => console.log(`Santa app listening on port ${port}!`));
