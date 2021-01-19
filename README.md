@@ -77,3 +77,7 @@ body should reflect
 ```
 
 DELETE `lettertosanta/:childUid/:uid` - delete gift giftlist
+
+## Tests
+
+Test can be run using `npm test` which will run mongoose in an test database. Please ensure that mongo is running to use this command.
