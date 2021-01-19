@@ -23,6 +23,7 @@ describe("Auth Tests", () => {
     done();
   });
 
+  // Testing register route.
   describe("/POST /auth/register", () => {
     it("Should allow a user to register", (done) => {
       const newUser = {
@@ -58,6 +59,7 @@ describe("Auth Tests", () => {
     });
   });
 
+  // Testing login route.
   describe("/POST /auth/login", () => {
     it("Should let a valid user log in", (done) => {
       const returningUser = {
@@ -92,6 +94,7 @@ describe("Auth Tests", () => {
     });
   });
 
+  // Testing logout route.
   describe("GET /auth/logout", () => {
     it("Should allow a user to logout", (done) => {
       chai

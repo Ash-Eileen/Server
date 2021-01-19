@@ -10,6 +10,7 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
+// Tests that correct environment is used in tests.
 describe("Tests that database connects to test environment", () => {
   describe("Tests that mongoose connects to test not development", () => {
     it("checks mongoose has connected to the test database not development", (done) => {

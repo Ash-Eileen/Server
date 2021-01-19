@@ -8,6 +8,7 @@ const {
 } = require("../controllers/childGiftList_controller");
 const { userAuthenticated } = require("../utils/auth_utils");
 
+// Future auth to be implemented.
 // router.use(userAuthenticated);
 
 router.get("/:childUid", getChildGiftList);

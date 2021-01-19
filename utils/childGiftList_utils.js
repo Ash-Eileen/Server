@@ -1,15 +1,16 @@
 const User = require("../models/user");
 const GiftList = require("../models/giftList");
 
-// route has :userId and :childName
-
+// Returns a giftlist for the child.
 const getChildGiftListById = (req) => {
   return GiftList.find({ childUid: req.params.childUid });
 };
 
+// Adds a giftlist for the child.
 const addChildGiftList = async (req) => {
   const childUid = req.params.childUid;
 
+  // Creates new list and adds the information from the request and then saves.
   let giftList = new GiftList({
     gifts: req.body.gifts || "",
     childUid: req.params.childUid,
@@ -21,6 +22,7 @@ const addChildGiftList = async (req) => {
   return giftList;
 };
 
+// Updates the childs giftlist.
 const updateChildGiftList = (req) => {
   return GiftList.findOneAndUpdate(
     { childUid: req.params.childUid, uid: req.body.uid },
@@ -31,6 +33,7 @@ const updateChildGiftList = (req) => {
   );
 };
 
+// Deletes the childs giftlist.
 const deleteChildGiftList = (req) => {
   return GiftList.deleteOne({
     childUid: req.params.childUid,

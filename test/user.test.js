@@ -28,6 +28,7 @@ describe("User Tests", () => {
     done();
   });
 
+  // Tests that you can retrieve a user.
   describe("/GET /dashboard/:userId", () => {
     it("should return a user given a userid", (done) => {
       const newUser = new User({
@@ -50,6 +51,7 @@ describe("User Tests", () => {
     });
   });
 
+  // Tests that you can add a child to a user.
   describe("/POST /dashboard/:userId/addchild", () => {
     it("should add a new child to the user", (done) => {
       const userWithChild = new User({

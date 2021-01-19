@@ -1,3 +1,4 @@
+// For future implementation of authentication.
 const userAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
     console.log("User authenticated");
